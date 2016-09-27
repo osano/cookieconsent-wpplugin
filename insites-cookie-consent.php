@@ -13,7 +13,7 @@ Text Domain: icc
 
 defined( 'ABSPATH' ) or die( 'No!' );
 
-define('CCVERSION', '3.0');
+define('CCVERSION', '3.1');
 define('PLUGINVERSION', '1.0');
 
 function icc_load_assets()

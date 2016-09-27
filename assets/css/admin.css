@@ -1,0 +1,52 @@
+.form-table {
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+.form-table td {
+    background: white;
+    width: 50%;
+    font-size: 15px;
+    padding: 20px;
+    vertical-align: top;
+    line-height: 2;
+}
+
+.form-table th {
+    padding: 30px 5px 5px 5px;
+}
+
+.choose-colours input[type=radio]+label {
+    transition: all .3s ease-in-out;
+    padding: 3px;
+    margin-right: 3px;
+}
+
+.choose-colours input[type=radio]:checked+label,
+.choose-colours input[type=radio]:hover+label {
+    border-bottom: 4px solid #c0c0c0;
+}
+
+.theme-preview-container {
+    display: inline-block;
+    height: 20px;
+    width: 35px;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.theme-preview-button {
+    height: 10px;
+    width: 15px;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.input-hidden {
+    position: absolute;
+    left: -9999px;
+}
+
+.form-table textarea, .form-table input[type=text] {
+    width: 100%;
+    padding: 5px 10px;
+}

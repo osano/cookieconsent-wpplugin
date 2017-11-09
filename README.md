@@ -6,8 +6,8 @@ In addition to that you can use custom code, to access the full functionality of
 ## Installation
 
 1. Upload the plugin files to the `/wp-content/plugins/insites-cookie-consent` directory, or install the plugin through the WordPress plugins screen directly.
-2. Activate the plugin through the 'Plugins' screen in WordPress.
-3. Use the Settings->Cookieconsent to enable and configure the cookie consent popup.
+2. Activate the plugin through the `Plugins` screen in WordPress.
+3. Use the `Settings`->`Cookieconsent` to enable and configure the cookie consent popup.
 
 ## License
 

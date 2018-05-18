@@ -143,7 +143,7 @@ function icc_options_page() {
             <tr><th colspan="2">6. Custom text</th></tr>
             <tr>
                 <td colspan="2" style="padding-bottom:0;"><p><b>Message</b></p>
-                    <textarea name="message-text" id="message-text" placeholder="This website uses cookies to ensure you get the best experience on our website." maxlength="300"><?php echo get_option('message-text') ?></textarea>
+                    <textarea name="message-text" id="message-text" placeholder="This website uses cookies to ensure you get the best experience on our website." maxlength="1024"><?php echo get_option('message-text') ?></textarea>
                 </td>
             </tr>
             <tr>

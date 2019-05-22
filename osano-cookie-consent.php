@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: Insites Cookie Consent
+Plugin Name: Osano Cookie Consent
 Plugin URI:
 Description: Official Cookie Consent WordPress plugin.
 Version:     1.0
-Author:      Insites
-Author URI:  https://insites.com/
+Author:      Osano, Inc., a Public Benefit Corporation
+Author URI:  https://cookieconsent.osano.com/
 License:     MIT
 License URI: https://opensource.org/licenses/MIT
 Text Domain: icc
@@ -137,7 +137,7 @@ function icc_options_page() {
                     <input type="radio" id="only-tell" name="choose-cookie-compliance" value="info" checked><label for="only-tell">Just tell users that we use cookies</label><br />
                     <input type="radio" id="let-opt-out" name="choose-cookie-compliance" value="opt-out" <?php echo get_option('choose-cookie-compliance')=='opt-out' ? 'checked' : '' ?>><label for="let-opt-out">Let users opt out of cookies (Advanced)</label><br />
                     <input type="radio" id="ask-to-opt" name="choose-cookie-compliance" value="opt-in" <?php echo get_option('choose-cookie-compliance')=='opt-in' ? 'checked' : '' ?>><label for="ask-to-opt">Ask users to opt into cookies (Advanced)</label><br />
-                    <p>For more information about compliance see <a href="http://cookieconsent.insites.com/documentation/compliance/" target="_blank">documentation</a></p>
+                    <p>For more information about compliance see <a href="http://cookieconsent.osano.com/documentation/compliance/" target="_blank">documentation</a></p>
                 </td>
             </tr>
             <tr><th colspan="2">6. Custom text</th></tr>
@@ -162,7 +162,7 @@ function icc_options_page() {
                     <textarea style="height: 150px;" name="custom-attributes" id="custom-attributes"><?php echo get_option('custom-attributes') ?></textarea>
 
                     <p>This overwrites all other options.</p>
-                    <p>List of available attributes can be found in Cookie Consent <a href="http://cookieconsent.insites.com/documentation/javascript-api/">documentation</a>.</p>
+                    <p>List of available attributes can be found in Cookie Consent <a href="http://cookieconsent.osano.com/documentation/javascript-api/">documentation</a>.</p>
                     <p>
                         Example:<br />
                         <code>palette:{popup:{background:"#fff"},button:{background:"#aa0000"}}</code>

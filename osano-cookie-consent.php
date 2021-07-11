@@ -13,6 +13,8 @@ Text Domain: icc
 
 defined( 'ABSPATH' ) or die( 'No!' );
 
+require_once 'includes/osanocc-polylang.php';
+
 define('CCVERSION', '3.1');
 define('PLUGINVERSION', '1.0');
 
@@ -29,6 +31,9 @@ add_action( 'wp_enqueue_scripts', 'icc_load_assets' );
 function icc_create_snippet() {
     if(!is_admin() && get_option('icc_popup_enabled') && get_option('icc_popup_options')) {
         $config = get_option('icc_popup_options');
+        
+        $config = icc_translate( $config );
+        
         echo '<script>window.cookieconsent.initialise('.$config.');</script>';
     }
 }
@@ -70,6 +75,8 @@ function icc_register_settings() {
     register_setting( 'icc-options', 'link-text' );
     register_setting( 'icc-options', 'deny-text' );
     register_setting( 'icc-options', 'custom-attributes' );
+    
+    icc_register_literals();
 }
 add_action( 'admin_init', 'icc_register_settings' );
 
@@ -141,6 +148,7 @@ function icc_options_page() {
                 </td>
             </tr>
             <tr><th colspan="2">6. Custom text</th></tr>
+            <?php icc_i18n_warning();?>
             <tr>
                 <td colspan="2" style="padding-bottom:0;"><p><b>Message</b></p>
                     <textarea name="message-text" id="message-text" placeholder="This website uses cookies to ensure you get the best experience on our website." maxlength="300"><?php echo get_option('message-text') ?></textarea>

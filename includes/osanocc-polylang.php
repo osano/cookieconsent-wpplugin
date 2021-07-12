@@ -39,7 +39,7 @@ function icc_translate( $config ) {
     $result = array();
     if ( function_exists('pll_register_string')) {
         $a = json_decode($config, true);
-        //there is more fields to be preserved than just text
+        // There are more fields to be preserved than just text.
         $save_keys = array('href');
         $saved_content = array(); 
         foreach ( $a as $key => $value ){

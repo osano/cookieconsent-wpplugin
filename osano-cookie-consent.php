@@ -32,6 +32,12 @@ function icc_create_snippet() {
     if(!is_admin() && get_option('icc_popup_enabled') && get_option('icc_popup_options')) {
         $config = get_option('icc_popup_options');
         
+        $aconfig = json_decode($config, true);
+        if ($aconfig['content']['href'] == 'policypage'){
+            $aconfig['content']['href'] = get_privacy_policy_url();
+        }
+        $config = json_encode($aconfig);
+        
         $config = icc_translate( $config );
         
         echo '<script>window.cookieconsent.initialise('.$config.');</script>';
@@ -76,7 +82,7 @@ function icc_register_settings() {
     register_setting( 'icc-options', 'deny-text' );
     register_setting( 'icc-options', 'custom-attributes' );
     
-    icc_register_literals();
+    icc_i18n_init_literals();
 }
 add_action( 'admin_init', 'icc_register_settings' );
 
@@ -136,6 +142,7 @@ function icc_options_page() {
                     <input type="radio" id="policylink" name="policy" value="policylink" <?php echo get_option('policy')=='policylink' ? 'checked' : '' ?>>
                     <label for="policylink">Link to your own policy (leave empty to disable link)</label><br />
                     <input type="text" name="link-href" placeholder="www.example.com/cookiepolicy" value="<?php echo get_option('link-href') ?>" onclick="document.getElementById('policylink').checked = true;" />
+                    <?php icc_show_wp_privacy_page();?>
                 </td>
             </tr>
             <tr><th colspan="2">5. Compliance type</th></tr>
@@ -182,4 +189,13 @@ function icc_options_page() {
         </div>
         <?php
     echo '</form>';
+}
+
+function icc_show_wp_privacy_page(){
+    if (get_privacy_policy_url() != '') {
+    ?>
+    <input type="radio" id="policypage" name="policy" value="policypage" <?php echo get_option('policy')=='policypage' ? 'checked' : '' ?>>
+    <label for="policypage">Link to <a href="<?php echo get_privacy_policy_url();?>" target="_blank">your own policy page</a></label><br />
+    <?php
+    }
 }

@@ -19,7 +19,7 @@ $icc_i18n_literals = array(
 );
 
 
-function icc_register_literals() {
+function icc_i18n_init_literals() {
     global $icc_i18n_literals;
     if ( is_admin() ){
         if ( function_exists('pll_register_string') ) {
@@ -30,6 +30,8 @@ function icc_register_literals() {
             }
         }
     }
+    
+    add_filter('privacy_policy_url', 'icc_translate_privacy_page', 10, 2);
 }
 
 function icc_translate( $config ) {
@@ -37,8 +39,18 @@ function icc_translate( $config ) {
     $result = array();
     if ( function_exists('pll_register_string')) {
         $a = json_decode($config, true);
+        //there is more fields to be preserved than just text
+        $save_keys = array('href');
+        $saved_content = array(); 
         foreach ( $a as $key => $value ){
             $result[$key] = $value;
+            if ( $key == 'content' ) {
+                foreach ( $save_keys as $key2save ) {
+                    if ($result[$key][$key2save] != null ) {
+                        $saved_content[$key2save] = $result[$key][$key2save];
+                    }
+                }
+            }
         }
         $result['content'] = array();
         foreach ( $icc_i18n_literals as $literal => $field ){
@@ -48,6 +60,7 @@ function icc_translate( $config ) {
                 $result['content'][$literal] = $a['content'][$literal];
             }
         }
+        $result['content'] = array_merge($result['content'], $saved_content);
         return json_encode($result);
     } else {
         return $config;
@@ -67,4 +80,24 @@ function icc_i18n_warning() {
 HTML;
         echo $warning;
     }
+}
+
+/**
+ * 
+ * @param string $url
+ * @param int $policy_page_id
+ */
+function icc_translate_privacy_page( $url, $policy_page_id){
+    //die();
+    if ( function_exists('pll_get_post_translations') && function_exists('pll_current_language') && function_exists('pll_default_language')) {
+        $trans = pll_get_post_translations( $policy_page_id );
+        $lang = pll_current_language();
+        if (empty($lang)) {
+            $lang = pll_default_language();
+        }
+        if ( !empty($trans) && $trans[$lang] != null ){
+            return get_post_permalink($trans[$lang]);
+        }
+    }
+    return $url;
 }

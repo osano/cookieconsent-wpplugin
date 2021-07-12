@@ -46,6 +46,8 @@ jQuery(function() {
         //remove link if user didnt fill in field
         if(input.policy == 'policylink') {
             input.href ? content.href = input.href : options.showLink = false;
+        } else if (input.policy == 'policypage') {
+            content.href = 'policypage';
         }
 
         // only add if not default

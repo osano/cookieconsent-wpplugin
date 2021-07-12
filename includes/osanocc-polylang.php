@@ -88,7 +88,6 @@ HTML;
  * @param int $policy_page_id
  */
 function icc_translate_privacy_page( $url, $policy_page_id){
-    //die();
     if ( function_exists('pll_get_post_translations') && function_exists('pll_current_language') && function_exists('pll_default_language')) {
         $trans = pll_get_post_translations( $policy_page_id );
         $lang = pll_current_language();

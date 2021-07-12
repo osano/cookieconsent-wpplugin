@@ -39,15 +39,13 @@ function icc_translate( $config ) {
         $a = json_decode($config, true);
         foreach ( $a as $key => $value ){
             $result[$key] = $value;
-            if ( $key == 'content'){
-                $result[$key] = array();
-                foreach ( $icc_i18n_literals as $literal => $field ){
-                    if ( function_exists('pll__')){
-                        $result[$key][$literal] = pll__($icc_i18n_literals[$literal]['default']);
-                    } else if ( $value[$literal] != null ){
-                        $result[$key][$literal] = $value[$literal];
-                    }
-                }
+        }
+        $result['content'] = array();
+        foreach ( $icc_i18n_literals as $literal => $field ){
+            if ( function_exists('pll__')){
+                $result['content'][$literal] = pll__($field['default']);
+            } else if ( $a['content'][$literal] != null ){
+                $result['content'][$literal] = $a['content'][$literal];
             }
         }
         return json_encode($result);

@@ -61,7 +61,7 @@ function icc_i18n_warning() {
         $warning = <<<HTML
         <tr>
             <td colspan="2" style="padding-bottom:0;">
-                <h2 style="color: red">$wmessage</h2>
+                <p style="color: red">$wmessage</p>
             </td>
         </tr>
 HTML;
